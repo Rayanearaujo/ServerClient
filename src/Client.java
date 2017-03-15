@@ -5,16 +5,16 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client {
-	public void SendMessage(){
+	public Client(){
 		try {
-			Socket socket = new Socket("localhost", 5007);
+			Socket socket = new Socket("localhost", 5001);
 			OutputStream os = socket.getOutputStream();
-			String message = "Hello Server! Can we talk?";
+			String message = "Hello Server!";
 			System.out.println("Mensagem enviada para o servidor: " + message);
 			os.write(message.getBytes());
 			
 			InputStream is = socket.getInputStream();
-			byte[] bs = new byte[40];
+			byte[] bs = new byte[15];
 			is.read(bs);
 			String s = new String(bs);
 			System.out.println("Mensagem recebida do servidor: " + s);

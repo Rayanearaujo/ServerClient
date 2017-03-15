@@ -6,22 +6,22 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Server {
-	public void receiveMessage(){
+	public Server(){
 		try {
-			ServerSocket ss = new ServerSocket(5007);
+			ServerSocket ss = new ServerSocket(5001);
 			System.out.println("Servidor ativo!");
 			Socket socket = ss.accept();
 			
 			InputStream is = socket.getInputStream();
-			byte[] bs = new byte[40];
+			byte[] bs = new byte[15];
 			is.read(bs);
-			System.out.println("Recebendo a mensagem: " + new String(bs) 
+			System.out.println("Recebendo do cliente a mensagem: " + new String(bs) 
 					+ " de: " + socket.getInetAddress().getHostAddress());
 			
 			OutputStream os = socket.getOutputStream();
-			String message = "Hello client! Of course we can!";
+			String message = "Hello client!";
 			os.write(message.getBytes());
-			System.out.println("Enviando a mensagem: " + message
+			System.out.println("Enviando para o cliente a mensagem: " + message
 					+ " para: " + socket.getInetAddress().getHostAddress());
 			
 			is.close();
@@ -35,6 +35,6 @@ public class Server {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 	}
 }
